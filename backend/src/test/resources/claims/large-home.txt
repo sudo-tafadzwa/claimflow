@@ -1,0 +1,10 @@
+HOME INSURANCE CLAIM
+
+Claimant name: Tendai Chikore
+Policy number: HOM-310547
+Incident date: {{INCIDENT_DATE}}
+Incident type: WATER_DAMAGE
+Amount claimed: 9000.00
+
+A burst geyser flooded the kitchen and lounge overnight. Flooring, cabinets and a sofa were damaged.
+The plumber's report and the contractor's quote are attached.

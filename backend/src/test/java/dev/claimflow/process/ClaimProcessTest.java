@@ -181,10 +181,14 @@ class ClaimProcessTest {
                 "coverLimit", 20000, "deductible", 100, "daysSinceIncident", daysSinceIncident);
     }
 
+    /** Timers fire asynchronously after the clock moves, so poll briefly rather than check once. */
     private ActivatedJob activate(String type) throws InterruptedException, TimeoutException {
-        engine.waitForIdleState(Duration.ofSeconds(5));
-        List<ActivatedJob> jobs = client.newActivateJobsCommand().jobType(type).maxJobsToActivate(1)
-                .send().join().getJobs();
+        List<ActivatedJob> jobs = List.of();
+        for (int attempt = 0; attempt < 25 && jobs.isEmpty(); attempt++) {
+            engine.waitForIdleState(Duration.ofSeconds(5));
+            jobs = client.newActivateJobsCommand().jobType(type).maxJobsToActivate(1)
+                    .requestTimeout(Duration.ofMillis(200)).send().join().getJobs();
+        }
         assertThat(jobs).as("expected an active job of type %s", type).hasSize(1);
         return jobs.getFirst();
     }

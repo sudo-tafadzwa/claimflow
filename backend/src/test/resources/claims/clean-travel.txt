@@ -1,0 +1,11 @@
+TRAVEL INSURANCE CLAIM FORM
+
+Claimant name: Rudo Moyo
+Policy number: TRV-100234
+Incident date: {{INCIDENT_DATE}}
+Incident type: BAGGAGE
+Amount claimed: 400.00
+
+Description:
+My checked bag did not arrive on the flight from Johannesburg. The airline confirmed it was lost.
+Receipts for replacement clothing and toiletries are attached.
