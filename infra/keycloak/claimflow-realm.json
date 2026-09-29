@@ -1,0 +1,49 @@
+{
+  "realm": "claimflow",
+  "enabled": true,
+  "displayName": "ClaimFlow (demo)",
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "accessTokenLifespan": 900,
+  "roles": {
+    "realm": [
+      { "name": "claimant", "description": "Submits and tracks their own claims" },
+      { "name": "adjuster", "description": "Verifies fields and reviews claims up to the senior threshold" },
+      { "name": "senior-adjuster", "description": "Reviews any claim; receives escalated work" },
+      { "name": "finance-maker", "description": "Prepares payouts" },
+      { "name": "finance-checker", "description": "Releases payouts prepared by someone else" },
+      { "name": "admin", "description": "Reads everything; recovers stuck claims" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "claimflow-web",
+      "name": "ClaimFlow web app",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:3000/*"],
+      "webOrigins": ["http://localhost:3000"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:3000/*"
+      }
+    }
+  ],
+  "users": [
+    { "username": "rudo", "firstName": "Rudo", "lastName": "Moyo", "email": "rudo@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["claimant"] },
+    { "username": "tendai", "firstName": "Tendai", "lastName": "Chikore", "email": "tendai@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["claimant"] },
+    { "username": "ann", "firstName": "Ann", "lastName": "Adjuster", "email": "ann@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["adjuster"] },
+    { "username": "sam", "firstName": "Sam", "lastName": "Senior", "email": "sam@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["senior-adjuster"] },
+    { "username": "fiona", "firstName": "Fiona", "lastName": "Finance", "email": "fiona@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["finance-maker", "finance-checker"] },
+    { "username": "chris", "firstName": "Chris", "lastName": "Checker", "email": "chris@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["finance-checker"] },
+    { "username": "admin", "firstName": "Ada", "lastName": "Admin", "email": "admin@example.com", "emailVerified": true, "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo", "temporary": false }], "realmRoles": ["admin"] }
+  ]
+}

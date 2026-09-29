@@ -19,7 +19,10 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          # Keys come from the JWKS URL (reachable inside the network); the issuer is still validated
+          # against the public URL that browsers see. Nothing is fetched at startup.
           issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8180/realms/claimflow}
+          jwk-set-uri: ${KEYCLOAK_JWKS_URI:http://localhost:8180/realms/claimflow/protocol/openid-connect/certs}
 
 camunda:
   client:
