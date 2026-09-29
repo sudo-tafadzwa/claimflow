@@ -1,0 +1,12 @@
+CLAIM FORM
+
+Claimant name: Priya Raman
+Policy number: MTR-402193
+Incident date: 2026-05-03
+Incident type: Theft
+Amount claimed: USD 760.00
+
+Description:
+The items were stolen while i was away.
+
+Correction: the repairer now says the amount is USD 1,520.00, not the figure above.

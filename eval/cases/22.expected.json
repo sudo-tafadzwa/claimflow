@@ -1,0 +1,12 @@
+{
+  "kind": "missing",
+  "expected": {
+    "policyNumber": "MTR-613848",
+    "incidentDate": null,
+    "claimedAmount": "2300.00",
+    "incidentType": "THEFT"
+  },
+  "mustFlag": [
+    "incidentDate"
+  ]
+}

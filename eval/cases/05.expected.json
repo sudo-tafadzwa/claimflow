@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "HOM-555077",
+    "incidentDate": "2026-08-25",
+    "claimedAmount": "760.00",
+    "incidentType": "WATER_DAMAGE"
+  },
+  "mustFlag": []
+}

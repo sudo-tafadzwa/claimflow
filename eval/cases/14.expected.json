@@ -1,0 +1,10 @@
+{
+  "kind": "email",
+  "expected": {
+    "policyNumber": "HOM-364603",
+    "incidentDate": "2026-01-19",
+    "claimedAmount": "180.00",
+    "incidentType": "FIRE"
+  },
+  "mustFlag": []
+}

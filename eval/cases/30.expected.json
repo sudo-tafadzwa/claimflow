@@ -1,0 +1,12 @@
+{
+  "kind": "conflict",
+  "expected": {
+    "policyNumber": "MTR-973219",
+    "incidentDate": null,
+    "claimedAmount": "760.00",
+    "incidentType": "ACCIDENT"
+  },
+  "mustFlag": [
+    "incidentDate"
+  ]
+}

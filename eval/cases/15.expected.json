@@ -1,0 +1,10 @@
+{
+  "kind": "email",
+  "expected": {
+    "policyNumber": "MTR-238030",
+    "incidentDate": "2026-06-13",
+    "claimedAmount": "1240.00",
+    "incidentType": "ACCIDENT"
+  },
+  "mustFlag": []
+}

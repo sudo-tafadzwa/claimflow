@@ -1,0 +1,12 @@
+{
+  "kind": "conflict",
+  "expected": {
+    "policyNumber": "MTR-402193",
+    "incidentDate": "2026-05-03",
+    "claimedAmount": null,
+    "incidentType": "THEFT"
+  },
+  "mustFlag": [
+    "claimedAmount"
+  ]
+}

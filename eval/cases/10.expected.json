@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "TRV-355693",
+    "incidentDate": "2026-03-07",
+    "claimedAmount": "6420.00",
+    "incidentType": "MEDICAL"
+  },
+  "mustFlag": []
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "conflict",
+  "expected": {
+    "policyNumber": "TRV-285250",
+    "incidentDate": "2026-05-21",
+    "claimedAmount": null,
+    "incidentType": "BAGGAGE"
+  },
+  "mustFlag": [
+    "claimedAmount"
+  ]
+}

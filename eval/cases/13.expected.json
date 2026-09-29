@@ -1,0 +1,10 @@
+{
+  "kind": "email",
+  "expected": {
+    "policyNumber": "HOM-226713",
+    "incidentDate": "2026-08-06",
+    "claimedAmount": "760.00",
+    "incidentType": "THEFT"
+  },
+  "mustFlag": []
+}

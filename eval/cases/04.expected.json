@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "MTR-238802",
+    "incidentDate": "2026-05-09",
+    "claimedAmount": "4800.00",
+    "incidentType": "THEFT"
+  },
+  "mustFlag": []
+}

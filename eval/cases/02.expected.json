@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "TRV-632298",
+    "incidentDate": "2026-04-04",
+    "claimedAmount": "4800.00",
+    "incidentType": "CANCELLATION"
+  },
+  "mustFlag": []
+}

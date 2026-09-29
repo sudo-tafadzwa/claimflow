@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "MTR-492814",
+    "incidentDate": "2026-06-20",
+    "claimedAmount": "180.00",
+    "incidentType": "ACCIDENT"
+  },
+  "mustFlag": []
+}

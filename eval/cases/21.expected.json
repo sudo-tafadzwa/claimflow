@@ -1,0 +1,12 @@
+{
+  "kind": "missing",
+  "expected": {
+    "policyNumber": null,
+    "incidentDate": "2026-07-07",
+    "claimedAmount": "4800.00",
+    "incidentType": "BAGGAGE"
+  },
+  "mustFlag": [
+    "policyNumber"
+  ]
+}

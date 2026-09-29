@@ -1,0 +1,10 @@
+{
+  "kind": "form",
+  "expected": {
+    "policyNumber": "TRV-976433",
+    "incidentDate": "2026-05-09",
+    "claimedAmount": "6420.00",
+    "incidentType": "BAGGAGE"
+  },
+  "mustFlag": []
+}

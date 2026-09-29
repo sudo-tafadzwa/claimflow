@@ -1,0 +1,12 @@
+{
+  "kind": "missing",
+  "expected": {
+    "policyNumber": "TRV-191395",
+    "incidentDate": "2026-08-17",
+    "claimedAmount": null,
+    "incidentType": "CANCELLATION"
+  },
+  "mustFlag": [
+    "claimedAmount"
+  ]
+}

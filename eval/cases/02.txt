@@ -1,0 +1,10 @@
+CLAIM FORM
+
+Claimant name: Daniel Okafor
+Policy number: TRV-632298
+Incident date: 2026-04-04
+Incident type: Cancellation
+Amount claimed: USD 4,800.00
+
+Description:
+The trip was cancelled because of a family emergency.

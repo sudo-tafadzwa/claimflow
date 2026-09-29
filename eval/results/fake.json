@@ -1,0 +1,15 @@
+{
+  "provider" : "fake",
+  "date" : "2026-09-29",
+  "cases" : 30,
+  "requiredFields" : 80,
+  "automatedCorrect" : 46,
+  "sentToPersonUnnecessarily" : 34,
+  "dangerousErrors" : 5,
+  "mustFlag" : 10,
+  "flagged" : 5,
+  "automationRate" : 0.575,
+  "flagRecall" : 0.5,
+  "routingCorrect" : 17,
+  "dangerous" : [ "26.claimedAmount confident on ambiguous: 760.00", "27.incidentDate confident on ambiguous: 2026-02-22", "28.policyNumber confident on ambiguous: TRV-949429", "29.claimedAmount confident on ambiguous: 9900.00", "30.incidentDate confident on ambiguous: 2026-08-28" ]
+}
