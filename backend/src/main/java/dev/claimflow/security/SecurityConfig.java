@@ -59,6 +59,7 @@ public class SecurityConfig {
         cors.setAllowedOrigins(origins);
         cors.setAllowedMethods(List.of("GET", "POST"));
         cors.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        cors.setMaxAge(3600L); // the web app polls; cache the preflight instead of repeating it
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/api/**", cors);
         source.registerCorsConfiguration("/process/**", cors);

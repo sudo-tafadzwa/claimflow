@@ -115,13 +115,22 @@ public class ClaimSteps {
         return vars;
     }
 
+    /**
+     * Only values that passed the deterministic checks reach the claim record. A value that failed them
+     * (confidence 0) stays in extracted_field, where the adjuster sees the raw text while verifying.
+     */
     private static void applyToClaim(Claim claim, ExtractionResult result) {
-        claim.setPolicyNumber(result.get(ClaimFields.POLICY_NUMBER).value());
-        String date = result.get(ClaimFields.INCIDENT_DATE).value();
+        claim.setPolicyNumber(valid(result, ClaimFields.POLICY_NUMBER));
+        String date = valid(result, ClaimFields.INCIDENT_DATE);
         claim.setIncidentDate(date == null ? null : FieldNormalizer.parseDate(date));
-        String amount = result.get(ClaimFields.CLAIMED_AMOUNT).value();
+        String amount = valid(result, ClaimFields.CLAIMED_AMOUNT);
         claim.setClaimedAmount(amount == null ? null : FieldNormalizer.parseAmount(amount));
-        claim.setIncidentType(result.get(ClaimFields.INCIDENT_TYPE).value());
+        claim.setIncidentType(valid(result, ClaimFields.INCIDENT_TYPE));
+    }
+
+    private static String valid(ExtractionResult result, String field) {
+        ExtractedValue value = result.get(field);
+        return value.confidence() > 0 ? value.value() : null;
     }
 
     /** The claim fields the process gateways and the DMN read. Nulls are left out rather than sent. */

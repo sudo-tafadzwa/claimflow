@@ -30,6 +30,8 @@
 | Pay | Payment worker | Idempotent on the claim; ledger posting can fail and trigger compensation |
 | Notify | System | Claimant sees paid, rejected (with the reason) or reversed |
 
+![An adjuster's verification task: the extractor could not parse the policy number or amount, so the raw text is shown for correction while the claim record stays empty](docs/images/verify-task.jpg)
+
 ## Architecture
 
 ```mermaid
@@ -133,7 +135,7 @@ To use Claude for extraction, set `EXTRACTION_PROVIDER=anthropic` and `ANTHROPIC
 ## Tests
 
 ```bash
-cd backend && ./mvnw verify      # 37 tests: unit, process, eval baseline, end to end (needs Docker)
+cd backend && ./mvnw verify      # 38 tests: unit, process, eval baseline, end to end (needs Docker)
 cd web && npm test               # web unit tests
 ```
 

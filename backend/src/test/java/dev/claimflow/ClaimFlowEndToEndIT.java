@@ -116,6 +116,9 @@ class ClaimFlowEndToEndIT {
         String verify = awaitTask(claimId, "VERIFY_FIELDS");
         JsonNode before = claim(claimId, staff());
         assertThat(before.at("/status").asText()).isEqualTo("NEEDS_VERIFICATION");
+        // Unparseable text stays in the extracted fields for the adjuster; it never reaches the claim record.
+        assertThat(before.at("/policyNumber").isNull()).isTrue();
+        assertThat(before.at("/staff/fields").findValuesAsText("value")).anyMatch(v -> v.startsWith("MTR 220988"));
 
         mvc.perform(post("/api/tasks/{id}/complete", verify).with(user("ann", "adjuster"))
                         .contentType("application/json")

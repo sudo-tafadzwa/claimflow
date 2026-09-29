@@ -55,7 +55,7 @@ export default function ClaimPage({ params }: { params: Promise<{ id: string }> 
         <div className="grid">
           {openTask && (canWork
             ? <TaskPanel task={openTask} claim={claim} onDone={load} />
-            : <section className="card"><h2>Waiting on</h2><p>{TASK_LABEL[openTask.type]} by a <b>{openTask.candidateRole}</b> ({slaText(openTask.slaDueAt)}).</p></section>)}
+            : <section className="card"><h2>Waiting on</h2><p>{TASK_LABEL[openTask.type]}, by someone with the <b>{openTask.candidateRole}</b> role ({slaText(openTask.slaDueAt)}).</p></section>)}
 
           {staff && (
             <section className="card">

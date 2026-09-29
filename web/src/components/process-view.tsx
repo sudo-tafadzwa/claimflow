@@ -25,14 +25,21 @@ export function ProcessView({ elementId }: { elementId: string }) {
         viewer = v;
         await v.importXML(xml);
         const canvas = v.get("canvas") as {
-          zoom(level: string): void;
+          zoom(level?: string | number): number;
           addMarker(id: string, marker: string): void;
-          scrollToElement(el: unknown): void;
+          scrollToElement(el: unknown, padding?: number): void;
         };
-        canvas.zoom("fit-viewport");
         const registry = v.get("elementRegistry") as { get(id: string): unknown };
         const element = registry.get(elementId);
         if (element) canvas.addMarker(elementId, "current");
+        // Wait for layout so the container has its real size, fit the model, then bring the current step into view.
+        requestAnimationFrame(() => {
+          if (cancelled) return;
+          canvas.zoom("fit-viewport");
+          // A long process fitted to a narrow card is unreadable; keep a readable minimum scale.
+          if (canvas.zoom() < 0.6) canvas.zoom(0.6);
+          if (element) canvas.scrollToElement(element, 120);
+        });
       } catch (e) {
         setError((e as Error).message);
       }
