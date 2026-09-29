@@ -2,7 +2,7 @@
 
 **Insurance claims orchestration on Camunda 8.** A claim document comes in and AI extracts the fields. Rules and fraud checks decide the route, adjusters handle the exceptions, and a payout needs two different people to release it.
 
-[![CI](https://github.com/sudo-tafadzwa/claimflow/actions/workflows/ci.yml/badge.svg)](https://github.com/sudo-tafadzwa/claimflow/actions/workflows/ci.yml) · MIT licence · Java 21 · Spring Boot 3.5 · Camunda 8.8 · Next.js 16
+MIT licence · Java 21 · Spring Boot 3.5 · Camunda 8.8 · Next.js 16
 
 ![The claim process: extraction, verification, coverage rules, fraud scoring, review, maker-checker payout and compensation](docs/images/claim-process.png)
 
