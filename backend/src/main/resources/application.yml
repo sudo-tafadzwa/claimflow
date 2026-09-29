@@ -36,7 +36,7 @@ claimflow:
     confidence-threshold: ${EXTRACTION_CONFIDENCE_THRESHOLD:0.85}
     anthropic:
       api-key: ${ANTHROPIC_API_KEY:}
-      model: ${ANTHROPIC_MODEL:claude-haiku-4-5}
+      model: ${ANTHROPIC_MODEL:claude-opus-5-5}
       timeout: 30s
   ledger:
     # Payouts above this amount are rejected by the (mock) ledger, which triggers compensation.
