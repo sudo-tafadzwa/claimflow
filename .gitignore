@@ -1,0 +1,24 @@
+# Java
+target/
+*.class
+.idea/
+*.iml
+.vscode/
+
+# Node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local eval runs with real providers
+eval/results/*.local.json

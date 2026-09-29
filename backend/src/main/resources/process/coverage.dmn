@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/"
+             xmlns:modeler="http://camunda.org/schema/modeler/1.0"
+             id="Definitions_Coverage"
+             name="Coverage"
+             namespace="https://claimflow.dev/dmn"
+             modeler:executionPlatform="Camunda Cloud"
+             modeler:executionPlatformVersion="8.8.0">
+
+  <decision id="coverage" name="Decide coverage">
+    <decisionTable id="Table_Coverage" hitPolicy="FIRST">
+      <input id="In_PolicyFound" label="Policy found">
+        <inputExpression id="Expr_PolicyFound" typeRef="boolean"><text>policyFound</text></inputExpression>
+      </input>
+      <input id="In_PolicyActive" label="Policy active on incident date">
+        <inputExpression id="Expr_PolicyActive" typeRef="boolean"><text>policyActive</text></inputExpression>
+      </input>
+      <input id="In_DaysSinceIncident" label="Days from incident to claim">
+        <inputExpression id="Expr_DaysSinceIncident" typeRef="number"><text>daysSinceIncident</text></inputExpression>
+      </input>
+      <input id="In_PolicyType" label="Policy type">
+        <inputExpression id="Expr_PolicyType" typeRef="string"><text>policyType</text></inputExpression>
+      </input>
+      <input id="In_ClaimedAmount" label="Claimed amount">
+        <inputExpression id="Expr_ClaimedAmount" typeRef="number"><text>claimedAmount</text></inputExpression>
+      </input>
+
+      <output id="Out_Covered" label="Covered" name="covered" typeRef="boolean" />
+      <output id="Out_Reason" label="Reason" name="reason" typeRef="string" />
+      <output id="Out_Payable" label="Payable amount" name="payableAmount" typeRef="number" />
+      <output id="Out_AutoApprove" label="Auto-approve eligible" name="autoApproveEligible" typeRef="boolean" />
+
+      <rule id="R_NoPolicy">
+        <description>No policy matches the policy number on the claim</description>
+        <inputEntry id="R1_I1"><text>false</text></inputEntry>
+        <inputEntry id="R1_I2"><text>-</text></inputEntry>
+        <inputEntry id="R1_I3"><text>-</text></inputEntry>
+        <inputEntry id="R1_I4"><text>-</text></inputEntry>
+        <inputEntry id="R1_I5"><text>-</text></inputEntry>
+        <outputEntry id="R1_O1"><text>false</text></outputEntry>
+        <outputEntry id="R1_O2"><text>"No matching policy"</text></outputEntry>
+        <outputEntry id="R1_O3"><text>0</text></outputEntry>
+        <outputEntry id="R1_O4"><text>false</text></outputEntry>
+      </rule>
+      <rule id="R_Inactive">
+        <description>Policy was not in force on the incident date</description>
+        <inputEntry id="R2_I1"><text>-</text></inputEntry>
+        <inputEntry id="R2_I2"><text>false</text></inputEntry>
+        <inputEntry id="R2_I3"><text>-</text></inputEntry>
+        <inputEntry id="R2_I4"><text>-</text></inputEntry>
+        <inputEntry id="R2_I5"><text>-</text></inputEntry>
+        <outputEntry id="R2_O1"><text>false</text></outputEntry>
+        <outputEntry id="R2_O2"><text>"Policy not in force on the incident date"</text></outputEntry>
+        <outputEntry id="R2_O3"><text>0</text></outputEntry>
+        <outputEntry id="R2_O4"><text>false</text></outputEntry>
+      </rule>
+      <rule id="R_Late">
+        <description>Reported more than 30 days after the incident</description>
+        <inputEntry id="R3_I1"><text>-</text></inputEntry>
+        <inputEntry id="R3_I2"><text>-</text></inputEntry>
+        <inputEntry id="R3_I3"><text>&gt; 30</text></inputEntry>
+        <inputEntry id="R3_I4"><text>-</text></inputEntry>
+        <inputEntry id="R3_I5"><text>-</text></inputEntry>
+        <outputEntry id="R3_O1"><text>false</text></outputEntry>
+        <outputEntry id="R3_O2"><text>"Reported more than 30 days after the incident"</text></outputEntry>
+        <outputEntry id="R3_O3"><text>0</text></outputEntry>
+        <outputEntry id="R3_O4"><text>false</text></outputEntry>
+      </rule>
+      <rule id="R_BelowDeductible">
+        <description>Claim does not exceed the deductible</description>
+        <inputEntry id="R4_I1"><text>-</text></inputEntry>
+        <inputEntry id="R4_I2"><text>-</text></inputEntry>
+        <inputEntry id="R4_I3"><text>-</text></inputEntry>
+        <inputEntry id="R4_I4"><text>-</text></inputEntry>
+        <inputEntry id="R4_I5"><text>&lt;= deductible</text></inputEntry>
+        <outputEntry id="R4_O1"><text>false</text></outputEntry>
+        <outputEntry id="R4_O2"><text>"Claimed amount does not exceed the deductible"</text></outputEntry>
+        <outputEntry id="R4_O3"><text>0</text></outputEntry>
+        <outputEntry id="R4_O4"><text>false</text></outputEntry>
+      </rule>
+      <rule id="R_SmallTravel">
+        <description>Small travel claims can be approved without a person</description>
+        <inputEntry id="R5_I1"><text>-</text></inputEntry>
+        <inputEntry id="R5_I2"><text>-</text></inputEntry>
+        <inputEntry id="R5_I3"><text>-</text></inputEntry>
+        <inputEntry id="R5_I4"><text>"TRAVEL"</text></inputEntry>
+        <inputEntry id="R5_I5"><text>&lt;= 1000</text></inputEntry>
+        <outputEntry id="R5_O1"><text>true</text></outputEntry>
+        <outputEntry id="R5_O2"><text>"Covered"</text></outputEntry>
+        <outputEntry id="R5_O3"><text>min([claimedAmount, coverLimit]) - deductible</text></outputEntry>
+        <outputEntry id="R5_O4"><text>true</text></outputEntry>
+      </rule>
+      <rule id="R_SmallMotorHome">
+        <description>Small motor and home claims can be approved without a person</description>
+        <inputEntry id="R6_I1"><text>-</text></inputEntry>
+        <inputEntry id="R6_I2"><text>-</text></inputEntry>
+        <inputEntry id="R6_I3"><text>-</text></inputEntry>
+        <inputEntry id="R6_I4"><text>"MOTOR","HOME"</text></inputEntry>
+        <inputEntry id="R6_I5"><text>&lt;= 2500</text></inputEntry>
+        <outputEntry id="R6_O1"><text>true</text></outputEntry>
+        <outputEntry id="R6_O2"><text>"Covered"</text></outputEntry>
+        <outputEntry id="R6_O3"><text>min([claimedAmount, coverLimit]) - deductible</text></outputEntry>
+        <outputEntry id="R6_O4"><text>true</text></outputEntry>
+      </rule>
+      <rule id="R_Default">
+        <description>Covered, but a person must review it</description>
+        <inputEntry id="R7_I1"><text>-</text></inputEntry>
+        <inputEntry id="R7_I2"><text>-</text></inputEntry>
+        <inputEntry id="R7_I3"><text>-</text></inputEntry>
+        <inputEntry id="R7_I4"><text>-</text></inputEntry>
+        <inputEntry id="R7_I5"><text>-</text></inputEntry>
+        <outputEntry id="R7_O1"><text>true</text></outputEntry>
+        <outputEntry id="R7_O2"><text>"Covered, review required"</text></outputEntry>
+        <outputEntry id="R7_O3"><text>min([claimedAmount, coverLimit]) - deductible</text></outputEntry>
+        <outputEntry id="R7_O4"><text>false</text></outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
